@@ -1,0 +1,71 @@
+---
+title: "Assignment4.1"
+author: "Aruna"
+date: "24 November 2018"
+output: word_document
+---
+```{r}
+#Assignment 4.1
+
+# 1A. Return only the rows in which the left table have match
+library(dplyr)
+
+df1= data.frame(CustID=c(1:6),Product = c(rep("TV",3),rep("Radio",3)))
+df2= data.frame(CustID=c(2,4,6),State = c(rep("Texas",2),rep("NYC",1)))
+df1# left table
+df2# right table
+
+semi_join(df1, df2) #keep only observations in df1 that match in df2.
+
+#1.B. Returns all rows from both tables, join records from the left
+#   which have a matching Key in the right tables
+
+full_join(df1,df2)
+
+#1.C. Returns all rows from left tables, and any rows with matching key
+#   from the right table
+#left outer
+left_join(df1, df2)
+
+#1.D. Returns all rows from  right tables, and any rows with matching key
+#   from the left table
+#RIght outer
+right_join(df1, df2)
+```
+
+```{r}
+# 2. Perform the below operations on above given data frames and tables
+#2.A Return a long format  of the datasets without matching key
+
+merge(x = df1, y = df2, by = "CustID", all.x= TRUE)
+
+#2.B Keep only observation in df1 that match in df2
+semi_join(df1, df2) #keep only observations in df1 that match in df2.
+
+#2.C Drop all observation in df1 that match in df2
+anti_join(df1, df2) #drops all observations in df1 that match in df2.
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
